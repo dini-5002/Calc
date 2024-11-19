@@ -6,9 +6,10 @@ const ScientificCalculator = () => {
   const [postfix, setPostfix] = useState(''); // State for storing the postfix expression
   const [mode, setMode] = useState('degrees');
   const [error, setError] = useState('');
-  const [theme, setTheme] = useState('dark'); // Theme state
+  const [theme, setTheme] = useState('light'); // Theme state
 
   const handleCalculate = async () => {
+    console.log(expression)
     try {
       const response = await fetch('http://localhost:5000/calculate', {
         method: 'POST',
@@ -35,7 +36,15 @@ const ScientificCalculator = () => {
   };
 
   const appendToExpression = (value) => {
-    setExpression((prev) => prev + value);
+    if (value==='π') {
+      setExpression((prev) => prev + 'pi');
+    }
+    else if (value==='√') {
+      setExpression((prev) => prev + 'sqrt');
+    }
+    else {
+      setExpression((prev) => prev + value);
+    }
   };
 
   const clearExpression = () => {
@@ -148,7 +157,7 @@ const ScientificCalculator = () => {
               {item}
             </Button>
           ))}
-          {['sin', 'cos', 'tan', 'log'].map((item) => (
+          {['sin', 'cos', 'tan', 'log', 'ln'].map((item) => (
             <Button
               key={item}
               onClick={() => appendToExpression(`${item}(`)}
