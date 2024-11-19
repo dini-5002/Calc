@@ -89,7 +89,7 @@ const ScientificCalculator = () => {
         className={`rounded-2xl shadow-xl w-full max-w-md p-6 ${isDark ? 'bg-gray-800' : 'bg-white'}`}
       >
         <div className="flex justify-between items-center mb-6">
-          <div className="text-2xl font-bold">Scientific Calculator</div>
+          <div className="text-2xl font-bold">STAN Scientific Calculator</div>
           <button
             onClick={toggleTheme}
             className={`p-2 rounded-lg ${isDark ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
