@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const ScientificCalculator = () => {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
+  const [postfix, setPostfix] = useState(''); // State for storing the postfix expression
   const [mode, setMode] = useState('degrees');
   const [error, setError] = useState('');
   const [theme, setTheme] = useState('dark'); // Theme state
@@ -23,6 +24,7 @@ const ScientificCalculator = () => {
       const data = await response.json();
       if (response.ok) {
         setResult(data.result);
+        setPostfix(data.postfix); // Assuming the backend sends the postfix expression
         setError('');
       } else {
         setError(data.error || 'An error occurred');
@@ -39,6 +41,7 @@ const ScientificCalculator = () => {
   const clearExpression = () => {
     setExpression('');
     setResult('');
+    setPostfix(''); // Clear postfix expression as well
     setError('');
   };
 
@@ -116,9 +119,14 @@ const ScientificCalculator = () => {
             className={`w-full p-4 text-right text-lg font-mono border rounded-lg ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
             readOnly
           />
+          {postfix && (
+            <div className="text-right text-xl font-mono font-bold p-2">
+              <strong>Postfix: </strong>{postfix}
+            </div>
+          )}
           {result && (
             <div className="text-right text-xl font-mono font-bold p-2">
-              = {result}
+              <strong>Result: </strong>{result}
             </div>
           )}
           {error && (
