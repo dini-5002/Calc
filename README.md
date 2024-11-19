@@ -112,7 +112,7 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
 
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install flask flask_cors
    ```
 
 3. Run the Flask server:
