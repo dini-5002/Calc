@@ -58,7 +58,7 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
 ```json
 {
   "expression": "<expression string>",
-  "use_degrees": true\|false
+  "use_degrees": true \| false
 }
 ```
 - `expression`: String containing the mathematical expression.
@@ -70,7 +70,7 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
 {
   "postfix_expression": "<postfix expression>",
   "result": "<calculated result>",
-  "use_degrees": true\|false
+  "use_degrees": true \| false
 }
 ```
 - On Failure:
