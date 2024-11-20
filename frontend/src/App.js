@@ -10,6 +10,8 @@ const ScientificCalculator = () => {
 
   const handleCalculate = async () => {
     console.log(expression)
+    setResult('');
+    setError('');
     try {
       const response = await fetch('http://localhost:5000/calculate', {
         method: 'POST',
@@ -40,7 +42,7 @@ const ScientificCalculator = () => {
       setExpression((prev) => prev + 'pi');
     }
     else if (value==='√') {
-      setExpression((prev) => prev + 'sqrt');
+      setExpression((prev) => prev + 'sqrt(');
     }
     else {
       setExpression((prev) => prev + value);
@@ -71,11 +73,17 @@ const ScientificCalculator = () => {
     </button>
   );
 
+  const handlePress = (event) => {
+    if (event.key === 'Enter') {
+      handleCalculate(); // Call the button click handler
+    }
+  };
+
   const isDark = theme === 'dark';
 
   // Function to add decimal point to the expression
   const appendDecimal = () => {
-    const lastNumber = expression.split(/[\+\-\*\/\^\(\)]+/).pop();
+    const lastNumber = expression.split(/[+\-*/^()]+/).pop();
     if (!lastNumber.includes('.')) {
       setExpression((prev) => prev + '.');
     }
@@ -86,7 +94,7 @@ const ScientificCalculator = () => {
       className={`min-h-screen transition-all duration-300 ${isDark ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'} flex items-center justify-center`}
     >
       <div
-        className={`rounded-2xl shadow-xl w-full max-w-md p-6 ${isDark ? 'bg-gray-800' : 'bg-white'}`}
+        className={`rounded-2xl shadow-xl w-full max-w-md p-6 ${isDark ? 'bg-gray-800' : 'bg-white'}`}  
       >
         <div className="flex justify-between items-center mb-6">
           <div className="text-2xl font-bold">STAN Scientific Calculator</div>
@@ -124,9 +132,11 @@ const ScientificCalculator = () => {
         <div className="space-y-2 mb-4">
           <input
             value={expression}
+            placeholder='Type an expression or use the buttons'
             onChange={(e) => setExpression(e.target.value)}
+            onKeyDown={handlePress}
             className={`w-full p-4 text-right text-lg font-mono border rounded-lg ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
-            readOnly
+            
           />
           {postfix && (
             <div className="text-right text-xl font-mono font-bold p-2">
