@@ -11,8 +11,10 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
   - Multiplication (`*`)
   - Division (`/`)
   - Percentage (`%`)
-- **Exponentiation**: Power (`^`).
-- **Factorials**: Calculation of factorial (`!`).
+- **Exponentiation**:
+  - Power (`^`).
+- **Factorials**:
+  - Calculation of factorial (`!`).
 - **Trigonometric Functions**:
   - Sine (`sin`)
   - Cosine (`cos`)
@@ -20,7 +22,9 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
   - Supports both **degrees** and **radians**.
 - **Logarithmic Functions**:
   - Base-10 Logarithm (`log`)
-- **Square Root**: Compute square root (`sqrt`).
+  - Natural Logarithm (`ln`)
+- **Square Root**:
+  - Compute square root (`sqrt`).
 - **Constants**:
   - π (Pi)
   - e (Euler's number)
@@ -123,4 +127,4 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
 4. Use the `/calculate` API endpoint for programmatic evaluation.
 
 ## Acknowledgment
-This project is a part of End-Term Evaluation of the course MA 253/CS 253 under the guidance of Dr. Subhra Mazumdar.
+This project is a part of the End-Term Evaluation of the course MA 253/CS 253 under the guidance of Dr. Subhra Mazumdar.
