@@ -44,16 +44,16 @@ class Stack:
         """String representation of the stack."""
         return str(self.items)
 
-def my_letter(c):
+def my_start_letter(c):
     """Checks if a character starts a mathematical function."""
     return c in ['s', 'c', 't', 'P', 'p', 'e', 'l']
 
 def my_end_letter(c):
-    """Checks if a character starts a mathematical function."""
+    """Checks if a character ends a mathematical function."""
     return c in ['n', 't', 's', 'g']
 
 def my_end_letter2(c):
-    """Checks if a character starts a mathematical function."""
+    """Checks if a character ends a constant."""
     return c in ['I', 'i', 'e']
 
 def func_word(t):
@@ -61,7 +61,9 @@ def func_word(t):
 
 def get_factorial(x):
     """Returns the factorial of a number using memoization."""
-    if x <= 1:
+    if x < 0:
+        raise ValueError("Factorial of negative numbers is not defined")
+    if x == 1 or x == 0:
         return 1
     if x in dp:
         return dp[x]
@@ -106,13 +108,13 @@ def fix_string(s, flag):
         if (s[i].isdigit() and s[i + 1] == '(') or (s[i] == ')' and s[i + 1].isdigit()):
             s = s[:i + 1] + '*' + s[i + 1:]
             print(s,'1')
-        elif (s[i] in ['!', '%'] and s[i + 1] == '(') or (s[i] in ['!', '%'] and my_letter(s[i + 1])) or (s[i] in ['!', '%'] and s[i + 1].isdigit()):
+        elif (s[i] in ['!', '%'] and s[i + 1] == '(') or (s[i] in ['!', '%'] and my_start_letter(s[i + 1])) or (s[i] in ['!', '%'] and s[i + 1].isdigit()):
             s = s[:i + 1] + '*' + s[i + 1:]
             print(s,'2')
-        elif (s[i] == ')' and my_letter(s[i + 1])) or (s[i].isdigit() and my_letter(s[i + 1])):
+        elif (s[i] == ')' and my_start_letter(s[i + 1])) or (s[i].isdigit() and my_start_letter(s[i + 1])):
             s = s[:i + 1] + '*' + s[i + 1:]
             print(s,'3')
-        elif (my_end_letter2(s[i]) and s[i+1] == '(') or (my_end_letter2(s[i]) and my_letter(s[i+1])) or (my_end_letter2(s[i]) and s[i+1].isdigit()):
+        elif (my_end_letter2(s[i]) and s[i+1] == '(') or (my_end_letter2(s[i]) and my_start_letter(s[i+1])) or (my_end_letter2(s[i]) and s[i+1].isdigit()):
             s = s[:i + 1] + '*' + s[i + 1:]
             print(s,'4')
         elif (my_end_letter(s[i]) and s[i + 1] == '('):
@@ -126,14 +128,14 @@ def fix_string(s, flag):
                     s = s[:i + 1] + str(start_algorithm(in_s, flag)) + s[j + 1:]
                     print(s,'6')
                     break
-                elif (s[j].isdigit() and my_letter(s[j + 1])) or (my_end_letter2(s[j]) and s[j+1].isdigit()):
+                elif (s[j].isdigit() and my_start_letter(s[j + 1])) or (my_end_letter2(s[j]) and s[j+1].isdigit()):
                     s = s[:j + 1] + '*' + s[j + 1:]
                     print(s)
                     j += 1
                 j += 1
         elif func_word(s[i-2:i+1]) or func_word(s[i-3:]):
-            print(my_letter(s[i+1]), s[i+1].isdigit())
-            if (not s[i+1].isdigit()) and (not my_letter(s[i+1])):
+            print(my_start_letter(s[i+1]), s[i+1].isdigit())
+            if (not s[i+1].isdigit()) and (not my_start_letter(s[i+1])):
                 print(s,'7')
                 raise ValueError("Trigonometric or Square Root function doesn't have value to evaluate")
         i += 1
@@ -141,12 +143,16 @@ def fix_string(s, flag):
     return s
 
 def evaluate_function(func, value, flag):
-    """Evaluates mathematical functions like sin, cos, tan, sqrt."""
+    """Evaluates mathematical functions like sin, cos, tan, sqrt, log, ln."""
     if func == "sin":
         return math.sin(math.radians(value)) if flag else math.sin(value)
     elif func == "cos":
         return math.cos(math.radians(value)) if flag else math.cos(value)
     elif func == "tan":
+        if (value == 90 and flag) or (value == PI/2 and not flag):
+            return math.inf
+        if (value == -90 and flag) or (value == -PI/2 and not flag):
+            return -math.inf 
         return math.tan(math.radians(value)) if flag else math.tan(value)
     elif func == "sqrt":
         if value < 0:
@@ -155,10 +161,14 @@ def evaluate_function(func, value, flag):
     elif func == "ln":
         if value < 0:
             raise ValueError("Natural Log of a negative number is not allowed.")
+        if value == 0:
+            raise ValueError("Natural Log of zero is not allowed.")
         return math.log(value)
     elif func == "log":
         if value < 0:
             raise ValueError("Log of a negative number is not allowed.")
+        if value == 0:
+            raise ValueError("Log of zero is not allowed.")
         return math.log10(value)
     else:
         raise ValueError(f"Unknown function: {func}")
@@ -169,9 +179,9 @@ def start_algorithm(s, flag):
     operators = Stack()
     check = 0
     i = 0
-    isNegative = False
 
     while i < len(s):
+        isNegative = False
         if s[i] == '=':
             break
         elif s[i] == 'e':
@@ -189,7 +199,7 @@ def start_algorithm(s, flag):
         elif s[i:i + 2] == "ln":
             i += 2
             num = ""
-            if my_letter(s[i]):
+            if my_start_letter(s[i]):
                 if s[i] == 'p':
                     value = PI
                     i += 1
@@ -211,7 +221,7 @@ def start_algorithm(s, flag):
             func = s[i:i + 3]
             i += 3
             num = ""
-            if my_letter(s[i]):
+            if my_start_letter(s[i]):
                 if s[i] == 'p':
                     value = PI
                     i += 1
@@ -232,18 +242,23 @@ def start_algorithm(s, flag):
         elif s[i:i + 4] == "sqrt":
             i += 4
             num = ""
-            if my_letter(s[i]):
+            if my_start_letter(s[i]):
                 if s[i] == 'p':
                     value = PI
                     i += 1
                 elif s[i] == 'e':
                     value = E
             else:
+                if s[i] == '-':
+                    isNegative=True
+                    i += 1
                 while i < len(s) and (s[i].isdigit() or s[i] == '.'):
                     num += s[i]
                     i += 1
                 i -= 1
                 value = float(num) if '.' in num else int(num)
+                if isNegative:
+                    value = -1*value
             postfix.append(evaluate_function("sqrt", value, flag))
         elif s[i] == '%':
             x = postfix.pop() / 100
