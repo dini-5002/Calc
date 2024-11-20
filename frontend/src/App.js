@@ -11,6 +11,7 @@ const ScientificCalculator = () => {
   const handleCalculate = async () => {
     console.log(expression)
     setResult('');
+    setPostfix('');
     setError('');
     try {
       const response = await fetch('http://localhost:5000/calculate', {
@@ -75,6 +76,7 @@ const ScientificCalculator = () => {
 
   const handlePress = (event) => {
     if (event.key === 'Enter') {
+      document.getElementById("expression").blur()
       handleCalculate(); // Call the button click handler
     }
   };
@@ -130,21 +132,23 @@ const ScientificCalculator = () => {
 
         {/* Display */}
         <div className="space-y-2 mb-4">
-          <input
+          <textarea
             value={expression}
             placeholder='Type an expression or use the buttons'
             onChange={(e) => setExpression(e.target.value)}
             onKeyDown={handlePress}
+            id='expression'
+            spellCheck='false'  
             className={`w-full p-4 text-right text-lg font-mono border rounded-lg ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}
             
           />
           {postfix && (
-            <div className="text-right text-xl font-mono font-bold p-2">
+            <div className="text-left text-md font-mono font-bold p-2">
               <strong>Postfix: </strong>{postfix}
             </div>
           )}
           {result && (
-            <div className="text-right text-xl font-mono font-bold p-2">
+            <div className="text-left text-lg font-mono font-bold p-2">
               <strong>Result: </strong>{result}
             </div>
           )}
