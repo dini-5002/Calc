@@ -10,6 +10,7 @@ MOD = int(1e9 + 7)
 PI = 3.141592653589793
 E = 2.718281828459045
 dp = {}
+#PF = []
 
 class Stack:
     """Custom Stack implementation."""
@@ -120,6 +121,8 @@ def fix_string(s, flag):
         elif (my_end_letter(s[i]) and s[i + 1] == '('):
             print(s,'5')
             j = i+1
+            if s[i+2] and s[i+2] == ')':
+                raise ValueError("Function doesn't have value to evaluate")
             while j < len(s):
                 if s[j] == ')':
                     in_s = ''
@@ -172,6 +175,10 @@ def evaluate_function(func, value, flag):
         return math.log10(value)
     else:
         raise ValueError(f"Unknown function: {func}")
+
+def getPostfix(postfix):
+    global PF
+    PF = postfix
 
 def start_algorithm(s, flag):
     """Converts an infix expression to postfix and evaluates it."""
@@ -291,6 +298,7 @@ def start_algorithm(s, flag):
     while not operators.is_empty():
         postfix.append(operators.pop())
 
+    getPostfix(postfix)
     print("Postfix Expression: ", " ".join(map(str, postfix)))
 
     stack = Stack()
@@ -333,8 +341,9 @@ def calculate_expression():
         # Evaluate the expression
         result = start_algorithm(expression, flag)
         result = f"{result:.15f}"
+        postfix = " ".join(map(str, PF))
         
-        return jsonify({'result': result, 'use_degrees': use_degrees})
+        return jsonify({'result': result, 'use_degrees': use_degrees, 'postfix': postfix})
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
