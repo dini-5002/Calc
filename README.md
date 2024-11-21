@@ -112,19 +112,47 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
    ```bash
    git clone <repository-url>
    cd <repository-folder>
-   ```
+   
 
-2. Install dependencies:
+   
+
+2. Backend Setup (Flask):
+  1.	Navigate to the backend directory:
    ```bash
-   pip install flask flask_cors
+   cd Calc/backend
    ```
-
-3. Run the Flask server:
+  2.	Create and activate a virtual environment:
    ```bash
-   python app.py
+   python -m venv 
+   source venv/bin/activate  # On macOS/Linux
+   venv\Scripts\activate     # On Windows
    ```
+  3.	Install the required Python dependencies:
+    ```bash
+      pip install
+    ```
+  4.	Run the Flask server: 
+     ```bash
+      python app.py
+    ```
+By default, the Flask app will be available at http://127.0.0.1:5000/.
 
-4. Use the `/calculate` API endpoint for programmatic evaluation.
+
+2. Backend Setup (Flask):
+  1.	Navigate to the frontend directory:
+   ```bash
+   cd Calc/frontend
+   ```
+  2.	Install the required Node.js dependencies: 
+   ```bash
+   npm install
+   ```
+  3.	Start the React development server:   
+    ```bash
+      npm start
+    ```
+
+By default, the React app will be available at http://localhost:3000/.
 
 ## Acknowledgment
 This project is a part of the End-Term Evaluation of the course MA 253/CS 253 under the guidance of Dr. Subhra Mazumdar.
