@@ -117,28 +117,28 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
    
 
 2. Backend Setup (Flask):
-  1.	Navigate to the backend directory:
+   1.	Navigate to the backend directory:
    ```bash
    cd Calc/backend
    ```
-  2.	Create and activate a virtual environment:
+   2.	Create and activate a virtual environment:
    ```bash
    python -m venv 
    source venv/bin/activate  # On macOS/Linux
    venv\Scripts\activate     # On Windows
    ```
-  3.	Install the required Python dependencies:
+   3.	Install the required Python dependencies:
     ```bash
       pip install
     ```
   4.	Run the Flask server: 
-     ```bash
-      python app.py
-    ```
-By default, the Flask app will be available at http://127.0.0.1:5000/.
+   ```bash
+   python app.py
+   ```
+3. By default, the Flask app will be available at http://127.0.0.1:5000/.
 
 
-2. Backend Setup (Flask):
+3. Frontend Setup :
   1.	Navigate to the frontend directory:
    ```bash
    cd Calc/frontend
@@ -148,9 +148,9 @@ By default, the Flask app will be available at http://127.0.0.1:5000/.
    npm install
    ```
   3.	Start the React development server:   
-    ```bash
-      npm start
-    ```
+   ```bash
+   npm install
+   ```
 
 By default, the React app will be available at http://localhost:3000/.
 
