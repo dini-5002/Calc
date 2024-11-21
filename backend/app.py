@@ -126,8 +126,26 @@ def fix_string(s, flag):
             j = i+1
             if s[i+2] and s[i+2] == ')':
                 raise ValueError("Function doesn't have value to evaluate")
+            j += 1
             while j < len(s):
-                if s[j] == ')':
+                if s[j] == '(':
+                    k = s.find(')', j)
+                    if s[j-3:j] == 'qrt':
+                        s1 = fix_string(s[j-4:k+1], flag)
+                        print(s1)
+                        s = s[:j-4] + str(start_algorithm(s1, flag)) + s[k + 1:]
+                        print(s[:j-4])
+                    elif func_word(s[j-3:j]):
+                        s1 = fix_string(s[j-3:k+1], flag)
+                        print(s1)
+                        s = s[:j-3] + str(start_algorithm(s1, flag)) + s[k + 1:]
+                        print(s[:j-3])
+                    elif func_word2(s[j-2:j]):
+                        s1 = fix_string(s[j-2:k+1], flag)
+                        print(s1)
+                        s = s[:j-2] + str(start_algorithm(s1, flag)) + s[k + 1:]
+                        print(s[:j-2])
+                elif s[j] == ')':
                     in_s = ''
                     if s[i+2:j]:
                         in_s = fix_string(s[i+2:j], flag)
