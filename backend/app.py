@@ -58,7 +58,10 @@ def my_end_letter2(c):
     return c in ['I', 'i', 'e']
 
 def func_word(t):
-    return t in ["sin", "cos", "tan", "qrt"]
+    return t in ["sin", "cos", "tan", "qrt", "log"]
+
+def func_word2(t):
+    return t in ["ln"]
 
 def get_factorial(x):
     """Returns the factorial of a number using memoization."""
@@ -128,7 +131,7 @@ def fix_string(s, flag):
                     in_s = ''
                     if s[i+2:j]:
                         in_s = fix_string(s[i+2:j], flag)
-                    s = s[:i + 1] + str(start_algorithm(in_s, flag)) + s[j + 1:]
+                        s = s[:i + 1] + str(start_algorithm(in_s, flag)) + s[j + 1:]
                     print(s,'6')
                     break
                 elif (s[j].isdigit() and my_start_letter(s[j + 1])) or (my_end_letter2(s[j]) and s[j+1].isdigit()):
@@ -136,11 +139,11 @@ def fix_string(s, flag):
                     print(s)
                     j += 1
                 j += 1
-        elif func_word(s[i-2:i+1]) or func_word(s[i-3:]):
+        elif func_word(s[i-2:i+1]) or func_word(s[i-3:]) or func_word2(s[i-2:]) or func_word2(s[i-1:i+1]):
             print(my_start_letter(s[i+1]), s[i+1].isdigit())
             if (not s[i+1].isdigit()) and (not my_start_letter(s[i+1])):
                 print(s,'7')
-                raise ValueError("Trigonometric or Square Root function doesn't have value to evaluate")
+                raise ValueError("Function doesn't have value to evaluate")
         i += 1
 
     return s
