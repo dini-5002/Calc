@@ -115,6 +115,7 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
 
    
 2. Backend Setup (Flask):
+
    1.	Navigate to the backend directory:
    ```bash
    cd Calc/backend
@@ -129,14 +130,15 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
     ```bash
       pip install
     ```
-  4.	Run the Flask server: 
-   ```bash
-     python app.py
-   ```
-  By default, the Flask app will be available at http://127.0.0.1:5000/.
+   4.	Run the Flask server: 
+    ```bash
+      python app.py
+    ```
+    By default, the Flask app will be available at http://127.0.0.1:5000/.
 
 
 3. Frontend Setup :
+  
   1.	Navigate to the frontend directory:
    ```bash
    cd Calc/frontend
