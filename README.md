@@ -128,7 +128,7 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
      ```
    3.	Install the required Python dependencies:
      ```bash
-       pip install
+       pip install -r requirements.txt
      ```
    4.	Run the Flask server: 
       ```bash
