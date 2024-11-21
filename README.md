@@ -154,5 +154,20 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
   
      By default, the React app will be available at http://localhost:3000/.
 
+## Usage Guidelines
+
+- The input expression can be given through buttons, or it can also be manually typed in the input area.
+- Every opening bracket must have a corresponding closing bracket to avoid raising errors.
+- For trigonometric, square root, and logarithmic functions, brackets are optional when the input to those functions is simple (involves just numbers with no operations).
+- Users can also give expressions within expressions, like inside a sine function or a cosine function. When providing such inputs, users can include brackets inside the sub-expression only if the brackets are associated with a function themselves.
+
+### Example Input Expression
+```json
+{
+  "expression": "sin( 5 + 3cos(45) - 5!) + log( 3^2 + 3ln(e) - 20%)",
+  "use_degrees": true
+}
+```
+
 ## Acknowledgment
 This project is a part of the End-Term Evaluation of the course MA 253/CS 253 under the guidance of Dr. Subhra Mazumdar.
