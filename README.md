@@ -137,22 +137,22 @@ This project is a **Data Structures and Algorithms (DSA)** implementation of a s
     By default, the Flask app will be available at http://127.0.0.1:5000/.
 
 
-3. Frontend Setup :
+ 3. Frontend Setup :
   
-  1.	Navigate to the frontend directory:
-   ```bash
-   cd Calc/frontend
-   ```
-  2.	Install the required Node.js dependencies: 
-   ```bash
-   npm install i
-   ```
-  3.	Start the React development server:   
-   ```bash
-   npm start
-   ```
-
-   By default, the React app will be available at http://localhost:3000/.
+    1.	Navigate to the frontend directory:
+     ```bash
+     cd Calc/frontend
+     ```
+    2.	Install the required Node.js dependencies: 
+     ```bash
+     npm install i
+     ```
+    3.	Start the React development server:   
+     ```bash
+     npm start
+     ```
+  
+     By default, the React app will be available at http://localhost:3000/.
 
 ## Acknowledgment
 This project is a part of the End-Term Evaluation of the course MA 253/CS 253 under the guidance of Dr. Subhra Mazumdar.
